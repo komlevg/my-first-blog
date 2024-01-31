@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>main page</h1>
+<ul>
+    {% for p in posts %}
+    {% if p.is_published %}
+
+        <div class="container py-4">
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-16">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h2>{{ p.title }}</h2>
+          <p> {{ p.newscontent  }}</p>
+          <button class="btn btn-outline-light" type="button">Example button</button>
+        </div>
+      </div>
+   </div>
+            <div class="p-3 text-light bg-danger border border-primary-subtle rounded-3">
+        {{ p.time_create  }}</div>
+        </div>
+
+    <hr>
+    {% endif %}
+    {% endfor %}
+
+</ul>
+{% endblock %}
