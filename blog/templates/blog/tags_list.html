@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+<h1>all tags</h1>
+{% block content %}
+{% for tag in tags %}
+<h2>{{tag.title}}</h2>
+<h2>{{tag.slug}}</h2>
+<a class="btn btn-outline-danger" href="{{ tag.get_absolute_url }}" role="button">{{ tag.title }}</a>
+
+{% endfor %}
+{% endblock %}

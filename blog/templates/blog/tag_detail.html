@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{tag.title}}
+{% endblock %}
+
+{% block content %}
+<h2>posts with tag: {{tag.title}}</h2>
+
+{% for post in tag.posts.all %}
+ <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h2>{{ post.title }}</h2>
+          <p> {{ post.newscontent|truncatewords:40 }}</p>
+            <a class="btn btn-outline-light" href="{{ post.get_absolute_url }}" role="button">{{ post.get_absolute_url }}</a>
+ </div>
+{% endfor %}
+{% endblock %}

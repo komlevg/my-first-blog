@@ -1,7 +1,10 @@
 
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
-from .models import SkyNews
+
+from blog.models import SkyNews, Tag
+
+#from .models import SkyNews
 
 # Create your views here.
 
@@ -32,11 +35,6 @@ planet_dict = [
 у земных плюмов, говорится в статье, опубликованной в журнале Nature Astronomy.'''
      },
 ]
-# Планетологи обнаружили признаки существования на Марсе активного плюма — поднимающейся из мантии струи вещества под равниной Элизий.
-# На Земле над такими плюмами могут формироваться супервулканы.
-# Основываясь на геофизической модели, на топографии кратеров и сейсмических данных,
-# ученые оценили диаметр головы плюма в четыре тысячи километров — примерно такие же размеры
-# у земных плюмов, говорится в статье, опубликованной в журнале Nature Astronomy.
 
 
 def index(request):
@@ -51,6 +49,19 @@ def posts_list(request):
     posts = SkyNews.objects.all()
     return render(request, 'blog/index.html', context={'posts':posts})
 
+def posts_detail(request, slug):
+    post = SkyNews.objects.get(slug__iexact=slug)
+    return render(request, 'blog/post_detail.html', context={'post':post})
+
+
+def tags_list(request):
+    tags = Tag.objects.all()
+    return render(request, 'blog/tags_list.html', context={'tags':tags})
+
+
+def tag_detail(request, slug):
+    tag = Tag.objects.get(slug__iexact=slug)
+    return render(request, 'blog/tag_detail.html', context={'tag': tag})
 
 def info_about_planets(request, some_planet):
     descr = planet_dict.get(some_planet)
