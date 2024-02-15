@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>main page</h1>
+<h1>news about space</h1>
 <ul>
     {% for p in posts %}
     {% if p.is_published %}
@@ -13,13 +13,23 @@
       <div class="col-md-16">
         <div class="h-100 p-5 text-bg-dark rounded-3">
           <h2>{{ p.title }}</h2>
-          <p> {{ p.newscontent  }}</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
+          <p> {{ p.newscontent|truncatewords:20 }}</p>
+
+            <a class="btn btn-outline-light" href="{{ p.get_absolute_url }}" role="button">{{ p.get_absolute_url }}</a>
+
         </div>
       </div>
    </div>
             <div class="p-3 text-light bg-danger border border-primary-subtle rounded-3">
-        {{ p.time_create  }}</div>
+        {{ p.time_create  }} {{ p.slug }}
+                tags:
+        {% for tag in p.tags.all %}
+
+            <a class="btn btn-outline-light" href="{{ tag.get_absolute_url }}" role="button">{{ tag.title }}</a>
+
+        {% endfor %}
+
+            </div>
         </div>
 
     <hr>
