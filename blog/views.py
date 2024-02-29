@@ -1,8 +1,9 @@
 
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from blog.models import SkyNews, Tag
+from blog.forms import AddPostForm
 
 #from .models import SkyNews
 
@@ -42,9 +43,6 @@ def index(request):
             'posts': planet_dict,}
     return render(request, 'blog/check_index.html', data)
 
-# def posts_list(request):
-#     return HttpResponse('Главная страница приложения blog.')
-
 def posts_list(request):
     posts = SkyNews.objects.all()
     return render(request, 'blog/index.html', context={'posts':posts})
@@ -62,6 +60,44 @@ def tags_list(request):
 def tag_detail(request, slug):
     tag = Tag.objects.get(slug__iexact=slug)
     return render(request, 'blog/tag_detail.html', context={'tag': tag})
+
+
+def addpage(request):
+    print(request)
+    if request.method == "POST":
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("posts_list_url")
+    else:
+        form = AddPostForm()
+
+    data = {
+        'title': 'добавление новости',
+        'form': form
+    }
+    return render(request, 'blog/addnews.html', data)
+
+
+def handle_uploaded_file(f):
+    with open(f'uploads/{f.name}', "wb+") as destination:
+        for piece in f.chunks():
+            destination.write(piece)
+
+# def addphoto(request):
+#     if request.method == 'POST':
+#         handle_uploaded_file(request.FILES['file_upload'])
+#     return render(request, 'blog/addphoto.html')
+
+def addphoto(request):
+    if request.method == 'POST':
+        form = AddPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("posts_list_url")
+    else:
+        form = AddPostForm()
+
 
 def info_about_planets(request, some_planet):
     descr = planet_dict.get(some_planet)
