@@ -11,7 +11,7 @@
  <div class="h-100 p-5 text-bg-dark rounded-3">
           <h2>{{ post.title }}</h2>
           <p> {{ post.newscontent|truncatewords:40 }}</p>
-            <a class="btn btn-outline-light" href="{{ post.get_absolute_url }}" role="button">{{ post.get_absolute_url }}</a>
+            <a class="btn btn-outline-light" href="{{ post.get_absolute_url }}" role="button">читать полностью</a>
  </div>
 {% endfor %}
 {% endblock %}

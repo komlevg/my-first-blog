@@ -34,6 +34,8 @@ class SkyNews(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
+    #new - photo for news
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, blank=True, null=True, verbose_name='фото')
 
     ''' This is a Python function that returns the absolute URL for a specific object instance in Django 
    web framework. It uses the reverse function from django.urls module to generate the URL by 
