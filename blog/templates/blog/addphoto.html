@@ -5,7 +5,7 @@
 <form action="" method="post" enctype="multipart/form-data">
  {% csrf_token %}
     <p>смотрим как работает загрузка фото</p>
-    <p><input type="file" name="file_upload"></p>
+     {{ form.as_p }}
     <p><button type="submit">отправить</button> </p>
 </form>
 {% endblock %}

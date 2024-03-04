@@ -2,6 +2,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def index(request):
+def check_index(request):
     data = {'sometext': 'наименьшая планета Солнечной системы и самая близкая'}
-    return render(request, 'blog/index.html', data)
+    return render(request, 'blog/check_index.html', data)

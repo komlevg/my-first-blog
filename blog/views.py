@@ -45,7 +45,7 @@ def index(request):
 
 def posts_list(request):
     posts = SkyNews.objects.all()
-    return render(request, 'blog/index.html', context={'posts':posts})
+    return render(request, 'blog/list_of_news.html', context={'posts':posts})
 
 def posts_detail(request, slug):
     post = SkyNews.objects.get(slug__iexact=slug)
@@ -98,11 +98,17 @@ def addphoto(request):
     else:
         form = AddPostForm()
 
+    data = {
+        'title': 'добавление новости с фото',
+        'form': form
+    }
+    return render(request, 'blog/addphoto.html', data)
+
 
 def info_about_planets(request, some_planet):
     descr = planet_dict.get(some_planet)
     data = {'sometext': descr}
-    return render(request, 'blog/index.html', data)
+    return render(request, 'blog/list_of_news.html', data)
 
 # def info_about_planets(request, some_planet):
 #     descr = planet_dict.get(some_planet)
