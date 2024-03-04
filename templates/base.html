@@ -6,10 +6,15 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link type="text/css" href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+	<link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@700&family=Lobster&display=swap" rel="stylesheet">
 </head>
-<body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Tenth navbar example">
+<body style="background-color: #92a8d1; font-family: Kode Mono;">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-danger" aria-label="Tenth navbar example">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,6 +37,9 @@
             <li class="nav-item">
             <a class="nav-link active" href="{% url 'addpage_url' %}">add news</a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="{% url 'addphoto_url' %}"><i class="bi bi-chat-right-heart-fill"></i></a>
+          </li>
         </ul>
       </div>
     </div>
@@ -39,5 +47,6 @@
 
 
 {% block content %} {% endblock %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
